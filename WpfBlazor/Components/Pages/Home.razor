@@ -1,0 +1,18 @@
+@page "/"
+
+<h1> Hello, WpfBlazor!</h1>
+
+<p>这是 WPF + Blazor Hybrid 的首页，对应关系见 MAUI Blazor 项目的 Home.razor。</p>
+
+<p role="status">当前时间：@message</p>
+
+<button class="btn btn-primary" @onclick="ShowTime">点击我</button>
+<button class="btn btn-secondary" @onclick="ClearTime">清空</button>
+
+@code {
+    private string? message;
+
+    private void ShowTime() => message = DateTime.Now.ToLongDateString();
+
+    private void ClearTime() => message = null;
+}

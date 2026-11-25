@@ -1,0 +1,48 @@
+@page "/componentuserlist"
+
+<h3>用户列表</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>姓名</th>
+            <th>密码</th>
+            <th>生日</th>
+            <th>住址</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Items)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.PassWord</td>
+                <td>@item.Birthday.ToShortDateString()</td>
+                <td>@item.Address</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<button class="btn btn-primary" @onclick="AddUser">添加用户</button>
+
+@code {
+    private List<User> Items { get; set; } = new()
+    {
+        new() { Birthday = DateTime.Now, Name = "张三", PassWord = "123456", Address = "北京市" },
+        new() { Birthday = DateTime.Now, Name = "李四", PassWord = "123456", Address = "上海市" },
+        new() { Birthday = DateTime.Now, Name = "王五", PassWord = "123456", Address = "广州市" },
+        new() { Birthday = DateTime.Now, Name = "赵六", PassWord = "123456", Address = "深圳市" }
+    };
+
+    private void AddUser()
+    {
+        Items.Add(new User
+        {
+            Birthday = DateTime.Now,
+            Name = "新用户",
+            PassWord = "123456",
+            Address = " "
+        });
+    }
+}

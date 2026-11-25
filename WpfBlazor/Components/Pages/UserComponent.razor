@@ -1,0 +1,40 @@
+@page "/user"
+
+<h3>添加用户</h3>
+
+<EditForm Model="User" OnValidSubmit="HandleSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="name">姓名</label>
+        <InputText id="name" class="form-control" @bind-Value="User.Name" />
+    </div>
+    <div class="form-group">
+        <label for="password">密码</label>
+        <InputText id="password" type="password" class="form-control" @bind-Value="User.PassWord" />
+    </div>
+    <div class="form-group">
+        <label for="birthday">生日</label>
+        <InputDate id="birthday" class="form-control" @bind-Value="User.Birthday" />
+    </div>
+    <div class="form-group">
+        <label for="address">住址</label>
+        <InputText id="address" class="form-control" @bind-Value="User.Address" />
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">提交</button>
+    <a href="/" class="btn btn-secondary mt-3">返回首页</a>
+</EditForm>
+
+<p role="status">@submitMessage</p>
+
+@code {
+    private User User { get; set; } = new() { Birthday = new DateTime(1921, 1, 1) };
+    private string? submitMessage;
+
+    private void HandleSubmit()
+    {
+        submitMessage = $"提交成功，姓名：{User.Name}";
+    }
+}
